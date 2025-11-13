@@ -21,16 +21,20 @@ public class BoardsPage extends BasePage{
 
     @FindBy(xpath = "//button[@data-testid='create-board-tile']")
     WebElement btnCreateNewBoard;
-
     @FindBy(xpath = "//input[@data-testid='create-board-title-input']")
     WebElement inputBoardTitle;
-
     @FindBy(xpath = "//button[@data-testid='create-board-submit-button']")
     WebElement btnCreate;
+    @FindBy(xpath = "//span[@class='VmbXKMJLSqfD0U']")
+    WebElement popUpMessageDelete;
 
+    public boolean validatePopUpMessage(String text){
+        return validateTextInElement(popUpMessageDelete, text);
+    }
 
     public void createNewBoard(Board board){
         clickWait(btnCreateNewBoard);
+        clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys((board.getBoardTitle()));
     }
 

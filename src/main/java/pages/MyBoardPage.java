@@ -15,9 +15,32 @@ public class MyBoardPage extends BasePage{
 
     @FindBy(xpath = "//h1[@data-testid='board-name-display']")
     WebElement boardName;
+    @FindBy(xpath = "//button[@aria-label='Show menu']")
+    WebElement btnDots;
+    @FindBy(xpath = "//span[@aria-label='Close board']")
+    WebElement btnCloseBoard;
+    @FindBy(xpath = "//button[@data-testid='popover-close-board-confirm']")
+    WebElement btnClose;
+    //button[text()='Delete']
+    @FindBy(xpath = "//button[@data-testid='close-board-delete-board-button']")
+    WebElement btnDeleteBoard;
+    @FindBy(xpath = "//button[text()='Delete']")
+    WebElement btnDelete;
 
-    public boolean validateBoardNane(String text){
-        return validateTextInElement(boardName, text);
+
+    public void deleteBoard(){
+        clickWait(btnDots);
+        clickWait(btnCloseBoard);
+        clickWait(btnClose);
+        driver.navigate().refresh();
+        //pause(3);
+        clickWait(btnDots);
+        clickWait(btnDeleteBoard);
+        clickWait(btnDelete);
     }
 
+    public boolean validateBoardNane(String text){
+
+        return validateTextInElement(boardName, text);
+    }
 }
