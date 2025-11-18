@@ -29,11 +29,14 @@ public class BoardsPage extends BasePage{
     WebElement popUpMessageDelete;
 
     public boolean validatePopUpMessage(String text){
+
         return validateTextInElement(popUpMessageDelete, text);
     }
 
     public void createNewBoard(Board board){
-        clickWait(btnCreateNewBoard);
+        pause(5);
+        btnCreateNewBoard.click();
+//        clickWait(btnCreateNewBoard);
         clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys((board.getBoardTitle()));
     }
