@@ -39,7 +39,7 @@ public class MyBoardPage extends BasePage{
         clickWait(btnDelete);
     }
 
-    public boolean validateBoardNane(String text){
+    public boolean validateBoardName(String text){
 
         return validateTextInElement(boardName, text);
     }

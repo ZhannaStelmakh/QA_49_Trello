@@ -38,7 +38,7 @@ public class BoardsTests extends AppManager {
         boardsPage.createNewBoard(board);
         boardsPage.clickBtnCreate();
         Assert.assertTrue(new MyBoardPage(getDriver())
-                .validateBoardNane(board.getBoardTitle()));
+                .validateBoardName(board.getBoardTitle()));
     }
 
     @Test
@@ -56,6 +56,15 @@ public class BoardsTests extends AppManager {
         boardsPage.createNewBoard(board);
         boardsPage.clickBtnCreate();
         Assert.assertTrue(new MyBoardPage(getDriver())
-                .validateBoardNane(board.getBoardTitle()));
+                .validateBoardName(board.getBoardTitle()));
+    }
+
+    @Test(dataProvider = "newBoardDataProviderFromFile", dataProviderClass = DataProviderBoards.class)
+    public void createNewBoardPositiveWithDataProviderFromFile(Board board){
+        BoardsPage boardsPage = new BoardsPage(getDriver());
+        boardsPage.createNewBoard(board);
+        boardsPage.clickBtnCreate();
+        Assert.assertTrue(new MyBoardPage(getDriver())
+                .validateBoardName(board.getBoardTitle()));
     }
 }
