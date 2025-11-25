@@ -9,6 +9,7 @@ import pages.AtlassianProfilePage;
 import pages.BoardsPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.RetryAnalyzer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,15 @@ public class ChangeProfileTests  extends AppManager {
         new LoginPage(getDriver()).Login(user);
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class, groups = "smoke")
     public void changeProfilePhoto() {
         new BoardsPage(getDriver()).openMyAccount();
         List<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
         System.out.println(tabs);
         getDriver().switchTo().window(tabs.get(1));
         AtlassianProfilePage atlassianProfilePage = new AtlassianProfilePage(getDriver());
-        atlassianProfilePage.changeMyProfilePhoto("src/main/resources/Leonardo_Phoenix_10_A_cozy_morning_kitchen_scene_a_middleaged_2.jpg");
+        atlassianProfilePage.changeMyProfilePhoto("src/main/resources/Lucid_Realism_A_cozy_morning_kitchen_scene_a_middleaged_woman__1.jpg");
+        Assert.assertTrue(atlassianProfilePage.validateMessage("We've uploaded your new avatar. " +
+                "It may take a few minutes to display everywhere."));
     }
 }

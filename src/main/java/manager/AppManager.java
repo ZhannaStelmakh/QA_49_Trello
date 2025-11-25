@@ -18,14 +18,14 @@ public class AppManager {
         return driver;
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(Method method){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         logger.info("Start test ---> " +method.getName());
     }
 
-    @AfterMethod(enabled = false)
+    @AfterMethod(alwaysRun = true) //(enabled = false)
     public void tearDown(Method method){
         if (driver != null)
             driver.quit();
